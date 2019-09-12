@@ -4,7 +4,11 @@ import static org.junit.Assert.assertEquals;
 import org.junit.jupiter.api.Test;
 import java.util.IllegalFormatException;
 import java.util.Scanner;
-
+/**
+ * Write a program to compute N factorial
+ * @author Zifeng Chen
+ *
+ */
 public class factorial {
 
 	public static void main(String[] args) {
@@ -29,6 +33,11 @@ public class factorial {
 		assertEquals(fact(5),120);
 		
 	}
+	/**
+	 * Performs factorial
+	 * @param in
+	 * @return
+	 */
 	public static int fact(int in)
 	{
 		if (in == 0) return 0;

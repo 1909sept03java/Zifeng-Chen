@@ -3,7 +3,12 @@ package Question3;
 import static org.junit.Assert.assertEquals;
 
 import org.junit.jupiter.api.Test;
-
+/**
+ * Reverse a string without using a temporary variable.  
+ * Do NOTuse reverse() in the StringBuffer or the StringBuilder APIs
+ * @author Zifeng Chen
+ *
+ */
 public class Reverse {
 
 	public static void main(String[] args) {
@@ -23,7 +28,11 @@ public class Reverse {
 		assertEquals(flip(in),out);
 	}
 	
-	
+	/**
+	 * flipping the string with a for loop and using substring method
+	 * @param in
+	 * @return
+	 */
 	public static String flip(String in)
 	{
 		for (int i = 0; i < in.length(); i++) {

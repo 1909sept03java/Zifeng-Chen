@@ -1,8 +1,6 @@
 package Question21;
 import static org.junit.Assert.assertEquals;
-
 import java.util.LinkedHashSet;
-import java.util.LinkedList;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;

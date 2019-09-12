@@ -1,5 +1,9 @@
 package Question2;
-
+/**
+ * does the first 25 fibonacci numbers
+ * @author Zifeng Chen
+ *
+ */
 public class Fibonacci {
 
 	public static void main(String[] args) {
@@ -7,6 +11,9 @@ public class Fibonacci {
 		fib();
 
 	}
+	/**
+	 * Fibonacci algorithm
+	 */
 	public static void fib()
 	{
 		int a = 0;

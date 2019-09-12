@@ -9,8 +9,20 @@ import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
-
+/**
+ * Write  a  program  that  demonstrates  the  switch  case.  Implement  the  following 
+ * functionalities in the cases
+ * @author Zifeng Chen
+ *
+ */
 public class switchCase {
+	/**
+	 * Every thing done in the main
+	 * case 1 finds square root
+	 * case 2 find the current time
+	 * case 3 performs a string split
+	 * @param args
+	 */
 	public static void main(String[] args)
 	{
 		System.out.println("Testing Case Functionalities\nEnter numbers 1-3, others to quit\n1) Find the square root"

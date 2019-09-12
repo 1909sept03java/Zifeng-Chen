@@ -4,9 +4,18 @@ import static org.junit.Assert.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import java.util.Scanner;
-
+/**
+ * Write a substring method that accepts a string str and an integer idx and returns the 
+ * substring  contained  between  0  and  idx-1 inclusive.Do  NOT  use  any  of  the  existing 
+ * substring methods in the String, StringBuilder, or StringBuffer APIs.
+ * @author Don't Melt The CPU
+ *
+ */
 public class subString {
-
+	/**
+	 * takes in user input
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		Test();
 		Scanner scan = new Scanner(System.in);
@@ -39,6 +48,14 @@ public class subString {
 		int idx = 4 ;
 		assertEquals(sub(str,idx),"This");
 	}
+	/**
+	 * substring method.
+	 * converts input string into char array
+	 * prints from idx to end
+	 * @param str
+	 * @param idx
+	 * @return
+	 */
 	public static String sub(String str, int idx)
 	{
 		char[] temp = str.toCharArray();

@@ -5,7 +5,11 @@ import static org.junit.Assert.assertEquals;
 import java.util.Scanner;
 
 import org.junit.jupiter.api.Test;
-
+/**
+ * This program check for even number
+ * @author Zifeng Chen
+ *
+ */
 public class CheckEven {
 	public static void main(String[] args)
 	{

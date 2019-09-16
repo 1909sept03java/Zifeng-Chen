@@ -22,7 +22,7 @@ public class FindMutation {
 
 		String[] bank1 = new String[] { "AACCGGTA" };
 		System.out.println("Hard Code Test\nStart:AACCGGTT\nEnd:AACCGGTA\nBank:AACCGGTA");
-		System.out.println(minimumMutation("AACCGGTT", "AACCGGTA", bank1));
+		System.out.println(minimumMutation("AACCGGTT", "AACCGGTT", bank1));
 		System.out.print("\nRead From File (bank.txt)\nStart: " + Start + "\nEnd: " + End + "\nBank: ");
 		for (String s : bankstore)
 			System.out.print(s + " ");

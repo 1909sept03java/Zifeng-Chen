@@ -28,13 +28,15 @@ public class Driver {
 		// will take 3 commands, login, reate, and quit
 		
 		while (run) {
-			System.out.print("Welcome to the Bank!" + "\nL) Login\nN) Create New User\nQ) Quit\nCommand:\t");
+			System.out.print("\nWelcome to the Bank!" + "\nL) Login\nN) Create New User\nQ) Quit\nCommand:\t");
 			input = scan.nextLine();
 			char i;
-			if (input == null)
+			try {
+				i = (input.toLowerCase().charAt(0));
+			}catch(IndexOutOfBoundsException e1) {
 				i = ' ';
-			else
-				i = input.toLowerCase().charAt(0);
+			}
+			
 			if (i == 'q') {
 				run = false;
 				break;
@@ -54,32 +56,39 @@ public class Driver {
 				un = scan.nextLine();
 				System.out.print("Enter Password:\t");
 				pw = scan.nextLine();
+//System.out.println(un + pw);
 				if (un == null || pw == null)
 					System.out.println("Invalid inputs");
+				
 				else {
 					if (e.login(un, pw)) {
 						inner_run = true;
 						boolean priv = e.getPriv();
-						System.out.println("\nWelcome " + e.getCurrentUser() + " To the Bank of BAD UX"
-								+ "\nQ) Log out\nA) Show all personal accounts\nC) Create new account\nE) Remove all empty accounts\n"
-								+ "D) Deposit into account\nW) Withdraw from account\nH) Show history");
-						if (priv)
-							System.out.println("Admin detected\nS) Show Everything\nU) Delete User\nN) Create New User");
+						//inner while loop
+						//allows the currentUser to perfrom selected commands
 						while (inner_run) {
+							System.out.println("\nWelcome " + e.getCurrentUser() + " To the Bank of BAD UX"
+									+ "\nQ) Log out\nA) Show all personal accounts\nC) Create new account\nE) Remove all empty accounts\n"
+									+ "D) Deposit into account\nW) Withdraw from account\nH) Show history");
+
+							if (priv)
+								System.out.println("Admin detected\nS) Show Everything\nU) Delete User\nN) Create New User");
+							
 							System.out.print("\nYour Commands:\t");
 							input = scan.nextLine();
 							char c;
-							if (input == null)
-								c = ' ';
-							else
+							try {
 								c = (input.toLowerCase().charAt(0));
-
+							}catch(IndexOutOfBoundsException e1) {
+								c = ' ';
+							}
 							
 							if (c == 'q') {
 								System.out.println("Logging out");
 								inner_run = false;
 								e.logout();
 							}
+							//creates new user while logged in, admin calls
 							else if(c=='n' && e.getPriv()==true) {
 								System.out.print("Creating a new user\nEnter Username:\t");
 								String un1 = scan.nextLine();
@@ -96,6 +105,9 @@ public class Driver {
 								}
 								
 							}
+							//create an instance of deletions 
+							//ignore ^
+							//deletes users with no money, admin only
 							else if(c=='u'&& e.getPriv()==true) {
 								System.out.println("Deleting an user\nPlease User ID:\t");
 								String str = scan.nextLine();
@@ -116,7 +128,7 @@ public class Driver {
 								System.out.println("Show all user");
 								
 							}
-							// show all my accounts
+							// show all my accounts 
 							else if (c == 'a') {
 
 								System.out.println("show all my accounts");

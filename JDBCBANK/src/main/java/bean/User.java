@@ -1,7 +1,13 @@
 package bean;
 
 import java.util.ArrayList;
-
+/**
+ * Creates an User object 
+ * with params
+ * 
+ * @author Zifeng Chen
+ *
+ */
 public class User {
 	private ArrayList<Integer>account;
 	private ArrayList<Double>money;

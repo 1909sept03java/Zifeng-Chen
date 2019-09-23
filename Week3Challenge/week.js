@@ -16,7 +16,7 @@ window.onload = function () {
                 tab.deleteRow(y);
             }
         }
-
+        var age = 0;
         for ( i = 0; i < 25 ; i ++){
 
             var row = tab.insertRow(i+1);
@@ -36,9 +36,11 @@ window.onload = function () {
             cell2.innerHTML = (data.results[i].email);
             cell3.innerHTML = (data.results[i].location.street +"<br>"+ data.results[i].location.city + " , " + data.results[i].location.state);
             cell4.innerHTML = (data.results[i].dob.age);
-            // console.log(data.results[i].picture.thumbnail);
+            age = age + (data.results[i].dob.age);
             }
-  
+            age = age/25;
+            var div1 =  document.getElementById("outputage");
+            div1.innerHTML = ("Average Age:<br>" + age);
 
 
         }

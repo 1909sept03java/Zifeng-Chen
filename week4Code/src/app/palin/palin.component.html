@@ -1,0 +1,22 @@
+<div >
+    <strong>
+        <h2 style="text-align: center;">
+            Palindrome finder
+        </h2>
+    </strong>
+</div>
+<div >
+    <div id = "output" style="Width:75%;float:left;background:grey">
+        <p style="text-align:center;">
+            <strong>Please enter a String to see if it is a Palindrome</strong>
+        </p>
+        <p style="text-align:center;">
+            <a href="https://en.wikipedia.org/wiki/Palindrome">What is this?</a>
+        </p>
+    </div>
+    <div id = "input" style="float:right;background:red;">
+        <input id="word" stype= "align:center;" placeholder="Enter Text Here" [(ngModel)]="user.message" required>
+        <br>
+        <button (click)=palin()>Submit</button>
+    </div>
+</div>

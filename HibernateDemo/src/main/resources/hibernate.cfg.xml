@@ -17,5 +17,6 @@
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<!-- where are the mapped beans? -->
 		<mapping class="com.revature.beans.Flashcard"></mapping>
+		<mapping class="com.revature.beans.Topic"></mapping>
 	</session-factory>
 </hibernate-configuration>

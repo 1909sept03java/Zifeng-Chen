@@ -1,42 +1,35 @@
 package com.revature;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 
 import com.revature.beans.Flashcard;
+import com.revature.beans.Topic;
 import com.revature.dao.FlashcardDAO;
 import com.revature.dao.FlashcardDAOImpl;
+import com.revature.dao.TopicDAOImpl;
 import com.revature.util.ConnectionUtil;
 
 public class Driver {
 //ee
 	public static void main(String[] args) {
-		 System.out.println(ConnectionUtil.getSessionFactory());
-		 SessionFactory sf = ConnectionUtil.getSessionFactory();
-		 Session s = sf.openSession();
-		 System.out.println(s.getStatistics());
-		 s.close();
-		 FlashcardDAO fd = new FlashcardDAOImpl();
 
-		 Flashcard ae = new Flashcard("set","vet");
-		 fd.addFlashcard(ae);
-		 
-		 for (Flashcard f : fd.getAll()) {
-			System.out.println(f);
-		 	}
-		 ae.setAnswer("det");
-		 ae.setQuestion("net");
-		 fd.updateFlashcard(ae);
-		 for (Flashcard f : fd.getAll()) {
-			 System.out.println(f);
-		 	}
-		 System.out.println("\nId2:"+fd.getById(2));
-		System.out.println( fd.getByQuestion("net") );
-		 
-		 // System.out.println(fd.getByQuestion("what is your name").toString());
-		//System.out.println(fd.getById(2));
-		// all of these Flashcards are now detached - they are no longe associated with
-		// an open session
+		List<Flashcard> flashcardList = new ArrayList<>();
+		List<Topic> TopicList = new ArrayList<>();
+	
+		FlashcardDAOImpl f = new FlashcardDAOImpl();
+		TopicDAOImpl t = new TopicDAOImpl();
+		
+		t.addTopic(new Topic("Topic1"));
+		TopicList = t.getAll();
+		f.addFlashcard(new Flashcard("Question1","Answer 1",TopicList.get(0)));		
+		flashcardList = f.getAll();
+		System.out.println(flashcardList.size());
+		//System.out.println(TopicList.);
 	}
 
 }

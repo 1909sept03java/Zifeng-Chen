@@ -1,10 +1,14 @@
 package com.revature.beans;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 //ddd
@@ -20,11 +24,18 @@ public class Flashcard {
 		this.question = question;
 		this.answer = answer;
 	}
-	public Flashcard(int id, String question, String answer) {
+	public Flashcard(String question, String answer,Topic topic) {
+		super();
+		this.question = question;
+		this.answer = answer;
+		this.topic = topic;
+	}
+	public Flashcard(int id, String question, String answer,Topic topic) {
 		super();
 		this.id = id;
 		this.question = question;
 		this.answer = answer;
+		this.topic = topic;
 	}
 	@Id // indicates that this is the primary key! ("persistent identity" of a Flashcard)
 	// generate values for this PK
@@ -37,6 +48,21 @@ public class Flashcard {
 	private String question;
 	@Column(name="ANSWER")
 	private String answer;
+	
+	
+	
+	@ManyToOne(fetch = FetchType.LAZY,targetEntity= com.revature.beans.Topic.class)
+	@JoinColumn (name = "Topic_fk")
+	private Topic topic;
+
+	
+
+	
+	public Flashcard(Topic topic) {
+		super();
+		this.topic = topic;
+	}
+	
 	public int getId() {
 		return id;
 	}
@@ -89,7 +115,12 @@ public class Flashcard {
 	}
 	@Override
 	public String toString() {
-		return "Flashcard [id=" + id + ", question=" + question + ", answer=" + answer + "]";
+		if(id== 0)
+			return "";
+		else if (topic==null)
+			return"Flashcard [id=" + id + ", question=" + question + ", answer=" + answer + "Topic: None]";
+		else
+			return "Flashcard [id=" + id + ", question=" + question + ", answer=" + answer + "Topic: "+ topic.toString()+ "]";
 	}
 
 }

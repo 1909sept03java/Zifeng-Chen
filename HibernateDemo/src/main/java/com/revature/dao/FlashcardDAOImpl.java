@@ -22,7 +22,7 @@ public class FlashcardDAOImpl implements FlashcardDAO {
 		try (Session s = sf.openSession()) {
 			f = s.get(Flashcard.class, id);
 			System.out.println(s.getStatistics());
-			f.setAnswer("Merlin");
+			//f.setAnswer("Merlin");
 		}
 		return f;
 	}
@@ -82,16 +82,19 @@ public class FlashcardDAOImpl implements FlashcardDAO {
 
 	@Override
 	public List<Flashcard> getByQuestion(String question) {
-
+		List<Flashcard> flashcardList = new ArrayList<>();
+		List<Flashcard> output = new ArrayList<>();
+		// use a Query
 		try (Session s = sf.openSession()) {
-			//Transaction tx = s.beginTransaction();
-			String sql = "From FLASHCARD WHERE QUESTION = " +question;
-			Query query = s.createQuery(sql);
-			
-			List<Flashcard>results = query.getResultList();
-			return results;
-			}
-
+			flashcardList = s.createQuery("from Flashcard").getResultList();
+			System.out.println(s.getStatistics());
+		}
+		for(int i = 0; i < flashcardList.size();i++) {
+			if( flashcardList.get(i).getQuestion().equals(question))
+				output.add(flashcardList.get(i));
+		}
+		return output;
+		
 	}
 
 }

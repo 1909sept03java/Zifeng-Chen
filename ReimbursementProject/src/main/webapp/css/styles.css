@@ -1,0 +1,47 @@
+@charset "ISO-8859-1";
+
+header{
+  text-align:center;
+}
+body{
+  background:#8cbea7;
+}
+form {
+  border: 3px solid #f1f1f1;
+}
+.wrap{
+  text-align:center;
+ 
+}
+.display{
+    text-align:center;
+    display: inline-block;
+     background-color:#add8e6;
+  Width:35%;
+}
+/* Full-width inputs */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+    background-color:#d6ebf2
+}
+
+/* Set a style for all buttons */
+button {
+  background-color: #5B9E41;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+/* Add a hover effect for buttons */
+button:hover {
+  opacity: 0.8;
+}

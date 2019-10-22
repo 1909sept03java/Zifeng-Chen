@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,7 +38,13 @@ public class CourseController {
 		return new ResponseEntity<>(this.courseService.getAllCourse(), HttpStatus.OK);
 	}
 	
-
+	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
+	public ResponseEntity<List<Course>> getMyCourse(@PathVariable int id) {
+		return new ResponseEntity<>(this.courseService.getMyCourse(id),HttpStatus.OK);
+		
+		
+	}
+	
 	@RequestMapping(value = "/add",method = RequestMethod.POST)
 	public ResponseEntity<String> addCourse(@Valid @RequestBody Course c) {
 		ResponseEntity<String> resp = null;

@@ -1,5 +1,6 @@
 package com.revature.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,19 @@ public class CourseService {
 
 		
 	}
-	
+	public List<Course> getMyCourse(int id){
+		List<Course> out = new ArrayList<Course>();
+		List<Course> all = getAllCourse();
+		for(Course a: all) {
+			for(Student d : a.getStudents()) {
+				if(d.getStudent_id()==id) {
+					out.add(a);
+					break;
+				}
+			}
+		}
+		return out;
+	}
 	public void updateCourse(Course f) {
 		System.out.println("here\n"+f.toString());
 		this.cr.save(f);

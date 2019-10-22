@@ -1,0 +1,20 @@
+<body ng-controller="main">
+<table style="width:100%" >
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Button</th>
+    </tr>
+    <body>
+    <tr *ngFor = 'let key of student' >
+      <td style="width:33%">{{ key.name}} 
+        
+      </td>
+      <td style="width:33%"> {{key.student_id}} </td>
+      <td style="width:33%">
+        <button (click)="accept(key)"><strong>Go</strong></button>
+    </td>
+    </tr>
+    </body>
+  </table> 
+</body>

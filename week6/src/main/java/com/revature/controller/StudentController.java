@@ -31,7 +31,7 @@ public class StudentController {
 	public ResponseEntity<List<Student>> getAll() {
 		return new ResponseEntity<>(this.studentService.getAllStudent(), HttpStatus.OK);
 	}
-	@RequestMapping(method = RequestMethod.POST)
+	@RequestMapping(value = "/add",method = RequestMethod.POST)
 	public ResponseEntity<String> addStudent(@Valid @RequestBody Student student) {
 		ResponseEntity<String> resp = null;
 		try {
@@ -45,27 +45,27 @@ public class StudentController {
 		}
 		return resp;
 	}
-	@RequestMapping(method = RequestMethod.PUT)
+	@RequestMapping(value = "/update",method = RequestMethod.PUT)
 	public ResponseEntity<String> updateStudent(@Valid @RequestBody Student student) {
 		ResponseEntity<String> resp = null;
 		try {
 			this.studentService.updateStudent(student);
-			resp = new ResponseEntity<>("student CREATED SUCCESSFULLY", HttpStatus.OK);
+			resp = new ResponseEntity<>("student UPDATED SUCCESSFULLY", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			resp = new ResponseEntity<>("FAILED TO CREATE student", HttpStatus.BAD_REQUEST);
+			resp = new ResponseEntity<>("FAILED TO UPDATED student", HttpStatus.BAD_REQUEST);
 		}
 		return resp;
 	}
-	@RequestMapping(method = RequestMethod.DELETE)
+	@RequestMapping(value = "/delete",method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteStudent(@Valid @RequestBody Student student) {
 		ResponseEntity<String> resp = null;
 		try {
 			this.studentService.deleteStudent(student);
-			resp = new ResponseEntity<>("student CREATED SUCCESSFULLY", HttpStatus.OK);
+			resp = new ResponseEntity<>("student DELETE SUCCESSFULLY", HttpStatus.OK);
 		} catch (Exception e) {
 			e.printStackTrace();
-			resp = new ResponseEntity<>("FAILED TO CREATE student", HttpStatus.BAD_REQUEST);
+			resp = new ResponseEntity<>("FAILED TO DELETE student", HttpStatus.BAD_REQUEST);
 		}
 		return resp;
 	}

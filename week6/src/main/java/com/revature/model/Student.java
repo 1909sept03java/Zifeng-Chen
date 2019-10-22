@@ -39,8 +39,8 @@ public class Student {
 	@Column(name="NAME")
 	private String name;
 	
-	@ManyToMany(mappedBy="students", fetch=FetchType.LAZY)
-	private List<Course> cour = new ArrayList<>();
+	@ManyToMany(mappedBy="students", fetch=FetchType.EAGER)
+	//private List<Course> cour = new ArrayList<>();
 	
 	
 	
@@ -48,18 +48,6 @@ public class Student {
 		return student_id;
 	}
 	public void setStudent_id(int student_id) {
-		this.student_id = student_id;
-	}
-	public List<Course> getCour() {
-		return cour;
-	}
-	public void setCour(List<Course> cour) {
-		this.cour = cour;
-	}
-	public int getId() {
-		return student_id;
-	}
-	public void setId(int student_id) {
 		this.student_id = student_id;
 	}
 	public String getName() {

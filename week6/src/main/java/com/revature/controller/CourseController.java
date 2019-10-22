@@ -1,5 +1,7 @@
 package com.revature.controller;
 
+import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -7,11 +9,14 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.revature.model.Course;
 import com.revature.model.Student;
 import com.revature.service.CourseService;
@@ -31,7 +36,9 @@ public class CourseController {
 	public ResponseEntity<List<Course>> getAll() {
 		return new ResponseEntity<>(this.courseService.getAllCourse(), HttpStatus.OK);
 	}
-	@RequestMapping(method = RequestMethod.POST)
+	
+
+	@RequestMapping(value = "/add",method = RequestMethod.POST)
 	public ResponseEntity<String> addCourse(@Valid @RequestBody Course c) {
 		ResponseEntity<String> resp = null;
 		try {
@@ -44,7 +51,9 @@ public class CourseController {
 		}
 		return resp;
 	}
-	@RequestMapping(method = RequestMethod.PUT)
+	
+	
+	@RequestMapping(value = "/update",method = RequestMethod.PUT)
 	public ResponseEntity<String> updateCourse(@Valid @RequestBody Course c) {
 		ResponseEntity<String> resp = null;
 		try {
@@ -56,7 +65,24 @@ public class CourseController {
 		}
 		return resp;
 	}
-	@RequestMapping(method = RequestMethod.DELETE)
+	
+	@RequestMapping(value = "/enroll",method= RequestMethod.PUT)
+	public ResponseEntity<String>updateCourseWithStudent(@Valid @RequestBody Course c,Student s){
+		List<Student> a = c.getStudents();
+		a.add(s);
+		c.setStudents(a);
+		ResponseEntity<String> resp = null;
+		try {
+			this.courseService.updateCourse(c);
+			resp = new ResponseEntity<>("Course update SUCCESSFULLY", HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			resp = new ResponseEntity<>("FAILED TO update Course", HttpStatus.BAD_REQUEST);
+		}
+		return resp;
+	}
+	
+	@RequestMapping(value = "/delete",method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteCourse(@Valid @RequestBody Course c) {
 		ResponseEntity<String> resp = null;
 		try {

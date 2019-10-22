@@ -11,5 +11,8 @@ import com.revature.model.*;
 
 @Repository
 public interface CourseRepository extends JpaRepository<Course, Integer> {
-	
+	@Modifying
+	@Query(value = "insert into COURSE (COURSE_ID, COURSE_NAME) values (:course_id, :course_name)",
+	  nativeQuery = true)
+	void insertCourse(@Param("course_id") Integer course_id, @Param("course_name") String name);
 }

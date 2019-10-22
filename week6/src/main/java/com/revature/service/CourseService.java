@@ -25,14 +25,16 @@ public class CourseService {
 	@Transactional
 	public void addCourse(Course s) {
 		
-		//this.studentRepository.insertStudent(s.getId(), s.getName());
-		this.cr.saveAndFlush(s);
+		this.cr.insertCourse(s.getId(),s.getName());
+
 		
 	}
+	
 	public void updateCourse(Course f) {
 		System.out.println("here\n"+f.toString());
 		this.cr.save(f);
 	}
+
 	public void deleteCourse(Course s) {
 		this.cr.delete(s);
 	}

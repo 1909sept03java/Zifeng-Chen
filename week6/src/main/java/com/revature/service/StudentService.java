@@ -24,13 +24,15 @@ public class StudentService {
 	//public Student getStudentById(int student_id) {
 	//	return this.studentRepository.findById(student_id).orElse(null);
 	//}
-@Transactional
+	@Transactional
 	public void addStudent(Student s) {
 		
-		this.studentRepository.insertStudent(s.getId(), s.getName());
+		this.studentRepository.insertStudent(s.getStudent_id(), s.getName());
 
 		
 	}
+	
+	
 	public void updateStudent(Student f) {
 		System.out.println("here\n"+f.toString());
 		this.studentRepository.save(f);

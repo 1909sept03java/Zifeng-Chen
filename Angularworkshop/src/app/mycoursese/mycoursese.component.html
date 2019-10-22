@@ -1,1 +1,32 @@
-<p>mycoursese works!</p>
+<body ng-controller="course">
+    <table style="width:100%" >
+        <tr>
+          <th>Course Id Number</th>
+          <th>Course Name</th>
+          <th>Button</th>
+        </tr>
+        <body>
+        <tr *ngFor = 'let key of course' >
+          <td style="width:33%">{{ key.name}} 
+              
+          </td>
+          <td style="width:33%"> {{key.id}} </td>
+          <td style="width:33%" >
+            <div *ngIf = "key.yes===1;else dd">
+                    <button (click)="Drop(key.id)"><strong>Drop</strong></button>
+            </div>
+            <ng-template #dd>
+                    <button (click)="Enroll(key.id)"><strong>Enroll</strong></button>
+                </ng-template>
+            <!-- <div *ngFor="let ss of key.students">
+                <div *ngIf = "ss.name==student.name;else dd">
+                    <p>here</p>
+                </div>
+
+            </div>
+         -->
+            </td>
+        </tr>
+        </body>
+      </table> 
+    </body>

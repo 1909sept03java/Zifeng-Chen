@@ -27,10 +27,11 @@ import com.revature.service.StudentService;
 @RequestMapping(value = "/course")
 public class CourseController {
 	private CourseService courseService;
-
+	private StudentService studentService;
 	@Autowired // setter injection
-	public void setCourseService(CourseService courseService) {
+	public void setCourseService(CourseService courseService, StudentService studentService) {
 		this.courseService = courseService;
+		this.studentService = studentService;
 	}
 	
 	@RequestMapping(value = "/all", method = RequestMethod.GET)
@@ -73,22 +74,74 @@ public class CourseController {
 		return resp;
 	}
 	
-	@RequestMapping(value = "/enroll",method= RequestMethod.PUT)
-	public ResponseEntity<String>updateCourseWithStudent(@Valid @RequestBody Course c,Student s){
-		List<Student> a = c.getStudents();
-		a.add(s);
-		c.setStudents(a);
+	@RequestMapping(value = "/enroll",method= RequestMethod.POST)
+	public ResponseEntity<String>updateCourseWithStudent(@Valid @RequestBody  String s){
+		System.out.println(s);
+		boolean flag = false;
+		byte[] jsonData = s.getBytes(Charset.forName("UTF-8"));
+		int student_id = 0;
+		int course_id = 0;
+		ObjectMapper objectMapper = new ObjectMapper();
 		ResponseEntity<String> resp = null;
+		//read JSON like DOM Parser
+		JsonNode rootNode;
 		try {
-			this.courseService.updateCourse(c);
-			resp = new ResponseEntity<>("Course update SUCCESSFULLY", HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			resp = new ResponseEntity<>("FAILED TO update Course", HttpStatus.BAD_REQUEST);
+			rootNode = objectMapper.readTree(jsonData);
+			JsonNode idNode = rootNode.path("student_id");
+			System.out.println("student_id = "+idNode.asText());
+			student_id = idNode.asInt();
+			
+			idNode= rootNode.path("course_id");
+			System.out.println("course_id = "+idNode.asText());
+			course_id = idNode.asInt();	
+			
+			Course tempc = this.courseService.getCourseById(course_id);
+			Student temps = this.studentService.getStudentById(student_id);
+			List<Student> temparr = tempc.getStudents();
+			temparr.add(temps);
+			tempc.setStudents(temparr);
+			this.courseService.updateCourse(tempc);
+			
+		} catch (Exception e1) {
+			e1.printStackTrace();
+				return new ResponseEntity<>("Something in the back end has an issue",HttpStatus.BAD_REQUEST);
 		}
-		return resp;
+		return  new ResponseEntity<>("Success",HttpStatus.OK);
 	}
-	
+	@RequestMapping(value = "/drop",method= RequestMethod.POST)
+	public ResponseEntity<String>dropCourseWithStudent(@Valid @RequestBody String s){
+		System.out.println(s);
+		boolean flag = false;
+		byte[] jsonData = s.getBytes(Charset.forName("UTF-8"));
+		int student_id = 0;
+		int course_id = 0;
+		ObjectMapper objectMapper = new ObjectMapper();
+		ResponseEntity<String> resp = null;
+		//read JSON like DOM Parser
+		JsonNode rootNode;
+		try {
+			rootNode = objectMapper.readTree(jsonData);
+			JsonNode idNode = rootNode.path("student_id");
+			System.out.println("student_id = "+idNode.asText());
+			student_id = idNode.asInt();
+			
+			idNode= rootNode.path("course_id");
+			System.out.println("course_id = "+idNode.asText());
+			course_id = idNode.asInt();	
+			
+			Course tempc = this.courseService.getCourseById(course_id);
+			Student temps = this.studentService.getStudentById(student_id);
+			List<Student> temparr = tempc.getStudents();
+			temparr.remove(temps);
+			tempc.setStudents(temparr);
+			this.courseService.updateCourse(tempc);
+			
+		} catch (Exception e1) {
+			e1.printStackTrace();
+				return new ResponseEntity<>("Something in the back end has an issue",HttpStatus.BAD_REQUEST);
+		}
+		return  new ResponseEntity<>("Success",HttpStatus.OK);
+	}
 	@RequestMapping(value = "/delete",method = RequestMethod.DELETE)
 	public ResponseEntity<String> deleteCourse(@Valid @RequestBody Course c) {
 		ResponseEntity<String> resp = null;

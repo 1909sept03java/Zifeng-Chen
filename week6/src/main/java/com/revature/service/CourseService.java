@@ -43,6 +43,9 @@ public class CourseService {
 		}
 		return out;
 	}
+	public Course getCourseById(int id) {
+		return this.cr.findById(id).orElse(null);
+	}
 	public void updateCourse(Course f) {
 		System.out.println("here\n"+f.toString());
 		this.cr.save(f);

@@ -21,9 +21,9 @@ public class StudentService {
 	public List<Student> getAllStudent(){
 		return this.studentRepository.findAll();
 	}
-	//public Student getStudentById(int student_id) {
-	//	return this.studentRepository.findById(student_id).orElse(null);
-	//}
+	public Student getStudentById(int student_id) {
+		return this.studentRepository.findById(student_id).orElse(null);
+	}
 	@Transactional
 	public void addStudent(Student s) {
 		

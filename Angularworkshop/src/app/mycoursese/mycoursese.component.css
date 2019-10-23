@@ -1,0 +1,28 @@
+.tb{
+    text-align: center;
+}
+.bd{
+    background-color: aquamarine;
+   
+}
+.toprow{
+    font-size: 20pt;
+    
+}
+.insertrow{
+    font-size:16pt;
+}
+button{
+    width: 10%;
+    height: 25px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: black;
+    border-radius: 4px;
+    background-color: #CDC9C9;
+    font: -apple-system-body;
+}
+  button:hover {
+    opacity: 0.8;
+  }
+  

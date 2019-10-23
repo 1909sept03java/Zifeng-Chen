@@ -1,22 +1,22 @@
-<body ng-controller="course">
-    <table style="width:100%" >
-        <tr>
-          <th>Course Id Number</th>
+<body ng-controller="course" class = "bd">
+    <button routerLink="/roster" routerLinkActive="active"> <Strong>Back to Rostser</Strong></button>
+    <table style="width:100%" class="tb" >
+        <tr class='toprow'>
           <th>Course Name</th>
-          <th>Button</th>
+          <th>Course Id Number</th>
+          <th>Options</th>
         </tr>
-        <body>
-        <tr *ngFor = 'let key of course' >
+        <tr *ngFor = 'let key of course' class='insertrow'>
           <td style="width:33%">{{ key.name}} 
               
           </td>
           <td style="width:33%"> {{key.id}} </td>
           <td style="width:33%" >
             <div *ngIf = "key.yes===1;else dd">
-                    <button (click)="Drop(key.id)"><strong>Drop</strong></button>
+                    <button mat-mini-fab (click)="Drop(key.id)"><strong>Drop</strong></button>
             </div>
             <ng-template #dd>
-                    <button (click)="Enroll(key.id)"><strong>Enroll</strong></button>
+                    <button mat-mini-fab (click)="Enroll(key.id)"><strong>Enroll</strong></button>
                 </ng-template>
             <!-- <div *ngFor="let ss of key.students">
                 <div *ngIf = "ss.name==student.name;else dd">
@@ -27,6 +27,6 @@
          -->
             </td>
         </tr>
-        </body>
       </table> 
+ 
     </body>

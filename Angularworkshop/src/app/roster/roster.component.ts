@@ -20,9 +20,10 @@ export class RosterComponent implements OnInit {
   constructor(private router: Router, private http: HttpClient) { 
   }
   accept(student){
-    alert(student);
+   // alert(student);
   // alert( this.student.student_id );
     sessionStorage.setItem('student',JSON.stringify(student));
+    alert("Welcome \n" + student.name);
     this.router.navigateByUrl("/mycourse");
   }
 

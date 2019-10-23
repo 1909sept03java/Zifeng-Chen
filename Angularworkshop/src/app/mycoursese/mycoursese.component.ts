@@ -20,15 +20,12 @@ export class MycourseseComponent implements OnInit {
       "student_id" : this.student.student_id,
       "course_id" : c_id
     };
-    var httpOptions = {
-      headers: new HttpHeaders({
-        'Content-type' : 'application/json'
-      })
-     };
 
-  this.http.post(url,body,httpOptions).subscribe(res=>{
-      console.log(res);
-
+    const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+    this.http.post(url, body, { headers, responseType: 'text' }).subscribe({
+      next(val) { alert(val);
+        location.reload();
+      }
     })
   }
 
@@ -40,21 +37,20 @@ export class MycourseseComponent implements OnInit {
       "student_id" : this.student.student_id,
       "course_id" : c_id
     };
-    var httpOptions = {
-      headers: new HttpHeaders({
-        'Content-type' : 'application/json'
-      })
-     };
 
-  this.http.post(url,body,httpOptions).subscribe(res=>{
-      console.log(res);
+     const headers = new HttpHeaders().set('Content-Type', 'application/json; charset=utf-8');
+    this.http.post(url, body, { headers, responseType: 'text' }).subscribe({
+      next(val) { alert(val);
+        location.reload();
+      }
 
     })
+
   }
   ngOnInit() {
     var DATA = JSON.parse(sessionStorage.getItem('student'));
     this.student = DATA;
-    console.log(this.student.name);
+    //
 
     var url = 'http://localhost:8082/course/all';
   

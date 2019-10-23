@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { RosterComponent } from './roster/roster.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MycourseseComponent } from './mycoursese/mycoursese.component';
+import { RedirectComponent } from './redirect/redirect.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     RosterComponent,
-    MycourseseComponent
+    MycourseseComponent,
+    RedirectComponent
 
   ],
   imports: [
